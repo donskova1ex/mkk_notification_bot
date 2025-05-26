@@ -1,14 +1,13 @@
 package repositories
 
 import (
-	"context"
 	"database/sql"
 	"fmt"
+	_ "github.com/denisenkom/go-mssqldb"
 )
 
-func NewSQLDB(ctx context.Context, sqlDSN string) (*sql.DB, error) {
-	dbDNS := ""
-	db, err := sql.Open("sqlserver", dbDNS)
+func NewSQLDB(sqlDSN string) (*sql.DB, error) {
+	db, err := sql.Open("sqlserver", sqlDSN)
 	if err != nil {
 		return nil, fmt.Errorf("error connecting to SQLite database: %w", err)
 	}
