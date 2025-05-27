@@ -22,6 +22,10 @@ func authorizedMenuMiddleware(bot *tgbotapi.BotAPI, chatID int64, text string, u
 		msg := tgbotapi.NewMessage(chatID, "Информация о вашем займе... (в разработке)")
 		msg.ReplyMarkup = keyboard
 		bot.Send(msg)
+	case "🧾 Активный займ", "/active_loan":
+		msg := tgbotapi.NewMessage(chatID, "Активный займ: Такой-то номер")
+		msg.ReplyMarkup = keyboard
+		bot.Send(msg)
 	case "❓ FAQ", "/faq":
 		msg := tgbotapi.NewMessage(chatID, "FAQ: Как получить займ? Ответ: через личный кабинет.")
 		msg.ReplyMarkup = keyboard
@@ -44,11 +48,12 @@ func authorizedMenuMiddleware(bot *tgbotapi.BotAPI, chatID int64, text string, u
 func getAuthorizedMenu() tgbotapi.ReplyKeyboardMarkup {
 	return tgbotapi.NewReplyKeyboard(
 		tgbotapi.NewKeyboardButtonRow(
+			tgbotapi.NewKeyboardButton("🧾 Активный займ"),
 			tgbotapi.NewKeyboardButton("📊 Информация о займе"),
-			tgbotapi.NewKeyboardButton("❓ FAQ"),
 		),
 		tgbotapi.NewKeyboardButtonRow(
 			tgbotapi.NewKeyboardButton("📞 Связь с оператором"),
+			tgbotapi.NewKeyboardButton("❓ FAQ"),
 		),
 	)
 }
