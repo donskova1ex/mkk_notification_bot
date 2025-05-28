@@ -26,7 +26,7 @@ func main() {
 
 	//SQLDSN := os.Getenv("SQL_DSN")
 
-	SQLDSN := "server=192.168.0.157,1433;user id=1C_user;password=9o3@C6J8*FAf;database=himera"
+	SQLDSN := ""
 	db, err := repositories.NewSQLDB(SQLDSN)
 	if err != nil {
 		logger.Error(
