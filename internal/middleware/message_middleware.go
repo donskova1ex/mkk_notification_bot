@@ -53,6 +53,6 @@ func MessageMiddleware(
 	case internal.WaitingAuthorization:
 		userPhoneNumberAuthorization(ctx, cds, bot, chatID, update.Message, state, logger)
 	case internal.Authorized:
-		authorizedMenuMiddleware(bot, chatID, update.Message.Text, state)
+		authorizedMenuMiddleware(bot, chatID, update.Message.Text, state, logger)
 	}
 }
