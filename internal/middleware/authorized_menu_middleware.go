@@ -24,7 +24,7 @@ func authorizedMenuMiddleware(bot *tgbotapi.BotAPI, chatID int64, text string, u
 		text = "/start"
 	}
 
-	cmd, exists := config.Commands[text]
+	cmd, exists := config.GetCommand(text)
 	if !exists {
 		handlers.SendResponse(bot, chatID, "Неизвестная команда. Используйте /help", nil, logger)
 	}
