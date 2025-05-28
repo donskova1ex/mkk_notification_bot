@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"github.com/joho/godotenv"
 	"log"
 	"log/slog"
 	"mkk_notification_bot/internal/middleware"
@@ -24,10 +25,15 @@ func main() {
 	logger := slog.New(loggerJSONHandler)
 	slog.SetDefault(logger)
 
-	//SQLDSN := os.Getenv("SQL_DSN")
+	err := godotenv.Load(".env.local")
+	if err != nil {
+		logger.Error("Error loading .env file", slog.String("err", err.Error()))
+	}
 
-	SQLDSN := ""
-	db, err := repositories.NewSQLDB(SQLDSN)
+	sqlDSN := os.Getenv("SQL_DSN")
+	TG_KEY := os.Getenv("TG_KEY")
+
+	db, err := repositories.NewSQLDB(sqlDSN)
 	if err != nil {
 		logger.Error(
 			"error connecting to database",
@@ -49,7 +55,7 @@ func main() {
 	clientDataProcessor := processors.NewClientDataProcessor(dbRepository, logger)
 	ClientDataService := services.NewClientDataService(clientDataProcessor, logger)
 
-	bot, err := tgbotapi.NewBotAPI("")
+	bot, err := tgbotapi.NewBotAPI(TG_KEY)
 	if err != nil {
 		log.Panic(err)
 	}
