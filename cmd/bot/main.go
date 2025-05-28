@@ -49,7 +49,7 @@ func main() {
 	clientDataProcessor := processors.NewClientDataProcessor(dbRepository, logger)
 	ClientDataService := services.NewClientDataService(clientDataProcessor, logger)
 
-	bot, err := tgbotapi.NewBotAPI("8094919071:AAEXAKjutzg3ZD0bz5KrZSsstlhW22S7fdE")
+	bot, err := tgbotapi.NewBotAPI("")
 	if err != nil {
 		log.Panic(err)
 	}
