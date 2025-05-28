@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"database/sql"
-	"fmt"
 	"github.com/joho/godotenv"
 	"log"
 	"log/slog"
@@ -60,7 +59,7 @@ func main() {
 		log.Panic(err)
 	}
 	bot.Debug = true
-	fmt.Printf("Authorized on account $s\n", bot.Self.UserName)
+	logger.Info("Authorized on account $s", bot.Self.UserName)
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 25
 

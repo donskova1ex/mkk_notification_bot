@@ -74,7 +74,7 @@ func userPhoneNumberAuthorization(
 			if err != nil {
 				slog.Error("error sending message to user", slog.String("err", err.Error()))
 			}
-			authorizedMenuMiddleware(bot, chatID, "/menu", state)
+			authorizedMenuMiddleware(bot, chatID, "/menu", state, logger)
 			return
 		}
 	}
