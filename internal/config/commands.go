@@ -7,11 +7,11 @@ type Command struct {
 	Keyboard *tgbotapi.ReplyKeyboardMarkup
 }
 
-var Commands = make(map[string]Command)
+var commands = make(map[string]Command)
 
 func Init() {
 	menuKeyboard := generateMenuKeyboard()
-	Commands = map[string]Command{
+	commands = map[string]Command{
 		"/menu": {
 			Text:     "Выберите действие:",
 			Keyboard: menuKeyboard,
@@ -60,7 +60,7 @@ func Init() {
 }
 
 func GetCommand(text string) (*Command, bool) {
-	cmd, ok := Commands[text]
+	cmd, ok := commands[text]
 	return &cmd, ok
 
 }
